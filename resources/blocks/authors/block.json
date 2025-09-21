@@ -1,12 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "x3p0/authors",
 	"version": "20250921",
 	"title": "Authors",
 	"category": "widgets",
 	"keywords": ["authors", "list", "users"],
-	"icon": "comments",
 	"description": "Displays a list of post authors.",
 	"attributes": {
 		"showFeed": {

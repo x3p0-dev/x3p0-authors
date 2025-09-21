@@ -7,14 +7,14 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-// Let webpack process stylesheets.
+// Import stylesheets.
 import './scss/style.scss';
 
-// WordPress dependencies.
+// Import dependencies.
 import { registerBlockType } from '@wordpress/blocks';
-
-// Import block metadata and settings.
-import * as block from './js/index';
+import metadata              from './block.json';
+import icon                  from './js/block-icon';
+import edit                  from './js/block-edit';
 
 // Register block type.
-registerBlockType( block.metadata, block.settings );
+registerBlockType(metadata, { icon, edit });

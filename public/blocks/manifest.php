@@ -3,7 +3,7 @@
 return array(
 	'authors' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 2,
+		'apiVersion' => 3,
 		'name' => 'x3p0/authors',
 		'version' => '20250921',
 		'title' => 'Authors',
@@ -13,7 +13,6 @@ return array(
 			'list',
 			'users'
 		),
-		'icon' => 'comments',
 		'description' => 'Displays a list of post authors.',
 		'attributes' => array(
 			'showFeed' => array(

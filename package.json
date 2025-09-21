@@ -13,5 +13,12 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.24.0"
+	},
+	"dependencies": {
+		"@wordpress/blocks": "^15.4.0",
+		"@wordpress/components": "^30.4.0",
+		"@wordpress/core-data": "^7.31.0",
+		"@wordpress/data": "^10.31.0",
+		"@wordpress/i18n": "^6.4.0"
 	}
 }
