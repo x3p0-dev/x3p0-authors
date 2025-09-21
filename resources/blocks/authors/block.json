@@ -1,10 +1,11 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "x3p0/list-authors",
-	"version": "1.0.0",
-	"title": "X3P0 - List Authors",
+	"name": "x3p0/authors",
+	"version": "20250921",
+	"title": "Authors",
 	"category": "widgets",
+	"keywords": ["authors", "list", "users"],
 	"icon": "comments",
 	"description": "Displays a list of post authors.",
 	"attributes": {
@@ -79,5 +80,7 @@
 	},
 	"textdomain": "x3p0-list-authors",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"example": {}
 }

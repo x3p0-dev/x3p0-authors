@@ -1,8 +1,6 @@
 <?php
 /**
- * Block class.
- *
- * Registers and renders the block type on the front end.
+ * Block registration class.
  *
  * @author    Justin Tadlock <justintadlock@gmail.com>
  * @copyright Copyright (c) 2022, Justin Tadlock
@@ -10,75 +8,44 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-namespace X3P0\ListAuthors;
+namespace X3P0\Authors\Block;
 
 use WP_Block;
 use WP_User_Query;
 
-class Block
+class Authors
 {
 	private ?array $post_counts = null;
 
-        /**
-         * Sets up object state.
-         *
-         * @since 1.0.0
-         */
-        public function __construct( protected string $path ) {}
-
-        /**
-         * Boots the component, running its actions/filters.
-         *
-         * @since 1.0.0
-         */
-        public function boot(): void
-        {
-                add_action( 'init', [ $this, 'register' ] );
-        }
-
 	/**
-	 * Registers the block with WordPress.
-	 *
-	 * @since 1.0.0
+	 * Sets up object state.
 	 */
-        public function register(): void
-        {
-                register_block_type( $this->path . '/public', [
-                        'render_callback' => [ $this, 'render' ]
-                ] );
-
-		wp_localize_script(
-			generate_block_asset_handle( 'x3p0/list-authors', 'editorScript' ),
-			'x3p0ListAuthors',
-			[ 'count' => $this->getPostCounts() ]
-		);
-        }
+	public function __construct(protected array $attributes)
+	{}
 
 	/**
 	 * Renders the block on the front end.
-	 *
-	 * @since 1.0.0
 	 */
-        public function render( array $attr, string $content, WP_Block $block ): string
-        {
-        	$attr = wp_parse_args( $attr, [
-			'showFeed'    => false,
+	public function render(): string
+	{
+		$this->attributes = wp_parse_args($this->attributes, [
+			'showFeed'      => false,
 			'showPostCount' => true,
-			'hideEmpty'   => false,
-			'number'      => 10,
-			'order'       => 'asc',
-			'orderby'     => 'name'
-        	] );
+			'hideEmpty'     => false,
+			'number'        => 10,
+			'order'         => 'asc',
+			'orderby'       => 'name'
+		]);
 
 		$query_args = [
-			'number'  => $attr['number'],
-			'order'   => $attr['order'],
-			'orderby' => $attr['orderby']
+			'number'  => $this->attributes['number'],
+			'order'   => $this->attributes['order'],
+			'orderby' => $this->attributes['orderby']
 		];
 
 		$counts = $this->getPostCounts();
 
-		if ( $attr['hideEmpty'] ) {
+		if ( $this->attributes['hideEmpty'] ) {
 			$query_args['include'] = array_keys( $counts );
 		}
 
@@ -100,7 +67,7 @@ class Block
 				esc_html( $user->display_name )
 			);
 
-			if ( $attr['showFeed'] ) {
+			if ( $this->attributes['showFeed'] ) {
 				$author .= sprintf(
 					'<span class="wp-block-x3p0-list-authors__feed">(<a href="%s">%s</a>)</span>',
 					get_author_feed_link( $user->ID ),
@@ -108,7 +75,7 @@ class Block
 				);
 			}
 
-			if ( $attr['showPostCount'] ) {
+			if ( $this->attributes['showPostCount'] ) {
 				$author .= sprintf(
 					'<span class="wp-block-x3p0-list-authors__count">(%s)</span>',
 					isset( $counts[ $user->ID ] ) ? absint( $counts[ $user->ID ] ) : 0
@@ -122,12 +89,12 @@ class Block
 		}
 
 		// Return the formatted block output.
-                return sprintf(
-                        '<div %s><ul class="wp-block-x3p0-list-authors__list">%s</ul></div>',
-                        get_block_wrapper_attributes(),
+		return sprintf(
+			'<div %s><ul class="wp-block-x3p0-list-authors__list">%s</ul></div>',
+			get_block_wrapper_attributes(),
 			$html
-                );
-        }
+		);
+	}
 
 	/**
 	 * Returns an array of user IDs (keys) with number of posts published

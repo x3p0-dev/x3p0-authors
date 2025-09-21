@@ -12,11 +12,15 @@
  * Text Domain:       x3p0-list-authors
  */
 
-namespace X3P0\ListAuthors;
+namespace X3P0\Authors;
 
-// Autoload classes and files.
-require_once 'src/Block.php';
-require_once 'src/functions-helpers.php';
+// Load classes and files.
+require_once 'src/Block/Register.php';
+require_once 'src/Block/Authors.php';
 
-// Bootstrap the plugin.
-plugin();
+# Bootstrap the plugin.
+add_action(
+	'plugins_loaded',
+	fn() => (new Block\Register(__DIR__ . '/public/blocks'))->boot(),
+	PHP_INT_MIN
+);

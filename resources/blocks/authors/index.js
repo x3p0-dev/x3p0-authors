@@ -8,7 +8,7 @@
  */
 
 // Let webpack process stylesheets.
-import './css/style.scss';
+import './scss/style.scss';
 
 // WordPress dependencies.
 import { registerBlockType } from '@wordpress/blocks';

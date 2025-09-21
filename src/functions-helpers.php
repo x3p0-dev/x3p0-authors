@@ -23,7 +23,7 @@ function plugin( string $abstract = '' ): mixed
 
 	if ( is_null( $bindings ) ) {
 		$bindings = [
-			'block' => new Block(
+			'block' => new Register(
                                 untrailingslashit( __DIR__ . '/..' )
                         )
 		];
