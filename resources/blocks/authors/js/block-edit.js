@@ -8,7 +8,7 @@
  */
 
 // Localized script with authors data.
-const { count } = x3p0ListAuthors;
+//const { count } = x3p0ListAuthors;
 
 // WordPress dependencies.
 import {
@@ -55,18 +55,21 @@ export default function Edit( {
 		};
 
 		// If hiding empty, specifically include authors with posts.
-		if ( true === hideEmpty ) {
-			queryArgs.include = Object.keys( count );
+		if (true === hideEmpty) {
+			queryArgs.has_published_posts = [ 'post' ];
 		}
 
-		const users = getUsers( queryArgs );
+		const users = getUsers(queryArgs);
 
+		/*
 		// Add the post count to the user object.
 		if ( users ) {
 			users.map( ( user ) => {
 				user.count = typeof count[ user.id ] !== 'undefined' ? count[ user.id ] : 0;
 			} );
 		}
+
+		 */
 
 		return users ?? [];
 	}, [
@@ -152,31 +155,29 @@ export default function Edit( {
 	return (
 		<>
 			{ inspectorControls }
-			<div { ...blockProps }>
-				<ul className="wp-block-x3p0-list-authors__list">
-					{ users.map( ( user ) => (
-						<li
-							className="wp-block-x3p0-list-authors__item"
-						>
-						<div className="wp-block-x3p0-list-authors__content">
-						<a
-							className="wp-block-x3p0-list-authors__link"
-							href={ user.link }
-							onClick={ ( event ) => event.preventDefault() }
-						>{ user.name }</a>
-						{ showFeed
-							? <span className="wp-block-x3p0-list-authors__feed">({ feedLink })</span>
-							: ''
-						}
-						{ showPostCount
-							? <span className="wp-block-x3p0-list-authors__count">({ user.count })</span>
-							: ''
-						}
-						</div>
-						</li>
-					) ) }
-				</ul>
-			</div>
+			<ul { ...blockProps }>
+				{ users.map( ( user ) => (
+					<li
+						className="wp-block-x3p0-list-authors__item"
+					>
+					<div className="wp-block-x3p0-list-authors__content">
+					<a
+						className="wp-block-x3p0-list-authors__link"
+						href={ user.link }
+						onClick={ ( event ) => event.preventDefault() }
+					>{ user.name }</a>
+					{ showFeed
+						? <> <span className="wp-block-x3p0-list-authors__feed">({ feedLink })</span></>
+						: ''
+					}
+					{ showPostCount
+						? <> <span className="wp-block-x3p0-list-authors__count">({ user.x3p0_authors_post_count })</span></>
+						: ''
+					}
+					</div>
+					</li>
+				) ) }
+			</ul>
 		</>
 	);
 }

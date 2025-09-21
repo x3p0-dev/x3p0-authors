@@ -15,8 +15,6 @@ namespace X3P0\Authors\Block;
  */
 class Register
 {
-	private ?array $post_counts = null;
-
         /**
          * Sets up object state.
          */
@@ -29,6 +27,7 @@ class Register
         public function boot(): void
         {
                 add_action('init', [$this, 'register']);
+		add_action('rest_api_init', [$this, 'registerRestFields']);
         }
 
 	/**
@@ -45,39 +44,18 @@ class Register
 			generate_block_asset_handle('x3p0/authors', 'editorScript'),
 			'x3p0-authors'
 		);
-
-		wp_localize_script(
-			generate_block_asset_handle('x3p0/authors', 'editorScript'),
-			'x3p0ListAuthors',
-			[
-				'count' => $this->getPostCounts()
-			]
-		);
         }
 
-	/**
-	 * Returns an array of user IDs (keys) with number of posts published
-	 * (values). Users without posts are not returned.
-	 */
-	private function getPostCounts(): array
+	public function registerRestFields(): void
 	{
-		global $wpdb;
-
-		if ( ! is_null( $this->post_counts ) ) {
-			return $this->post_counts;
-		}
-
-		// @todo Cache this, bust on `save_post`.
-		$this->post_counts = [];
-
-		$results = (array) $wpdb->get_results(
-			"SELECT DISTINCT post_author, COUNT(ID) AS count FROM $wpdb->posts WHERE " . get_private_posts_cap_sql( 'post' ) . ' GROUP BY post_author'
-		);
-
-		foreach ($results as $row) {
-			$this->post_counts[$row->post_author] = $row->count;
-		}
-
-		return $this->post_counts;
+		register_rest_field('user', 'x3p0_authors_post_count', array(
+			'get_callback' => function($user) {
+				return count_user_posts($user['id'], 'post', true);
+			},
+			'schema' => [
+				'description' => __('Number of published posts by user', 'x3p0-authors'),
+				'type'        => 'integer',
+			],
+		));
 	}
 }

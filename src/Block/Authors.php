@@ -10,13 +10,10 @@
 
 namespace X3P0\Authors\Block;
 
-use WP_Block;
 use WP_User_Query;
 
 class Authors
 {
-	private ?array $post_counts = null;
-
 	/**
 	 * Sets up object state.
 	 */
@@ -43,10 +40,12 @@ class Authors
 			'orderby' => $this->attributes['orderby']
 		];
 
-		$counts = $this->getPostCounts();
+		//$counts = $this->getPostCounts();
 
 		if ( $this->attributes['hideEmpty'] ) {
-			$query_args['include'] = array_keys( $counts );
+			$query_args['has_published_posts'] = [
+				'post'
+			];
 		}
 
 		// `wp_list_authors()` is a hot mess on output, making it hard
@@ -69,7 +68,7 @@ class Authors
 
 			if ( $this->attributes['showFeed'] ) {
 				$author .= sprintf(
-					'<span class="wp-block-x3p0-list-authors__feed">(<a href="%s">%s</a>)</span>',
+					' <span class="wp-block-x3p0-list-authors__feed">(<a href="%s">%s</a>)</span>',
 					get_author_feed_link( $user->ID ),
 					__( 'Feed', 'x3p0-list-authors' )
 				);
@@ -77,8 +76,8 @@ class Authors
 
 			if ( $this->attributes['showPostCount'] ) {
 				$author .= sprintf(
-					'<span class="wp-block-x3p0-list-authors__count">(%s)</span>',
-					isset( $counts[ $user->ID ] ) ? absint( $counts[ $user->ID ] ) : 0
+					' <span class="wp-block-x3p0-list-authors__count">(%s)</span>',
+					esc_html(count_user_posts($user->ID, 'post', true))
 				);
 			}
 
@@ -90,33 +89,9 @@ class Authors
 
 		// Return the formatted block output.
 		return sprintf(
-			'<div %s><ul class="wp-block-x3p0-list-authors__list">%s</ul></div>',
+			'<ul %s>%s</ul>',
 			get_block_wrapper_attributes(),
 			$html
 		);
-	}
-
-	/**
-	 * Returns an array of user IDs (keys) with number of posts published
-	 * (values).  Users without posts are not returned.
-	 *
-	 * @since 1.0.0
-	 */
-	private function getPostCounts(): array
-	{
-		global $wpdb;
-
-		if ( ! is_null( $this->post_counts ) ) {
-			return $this->post_counts;
-		}
-
-		// @todo Cache this, bust on `save_post`.
-		$this->post_counts = [];
-
-		foreach ( (array) $wpdb->get_results( "SELECT DISTINCT post_author, COUNT(ID) AS count FROM $wpdb->posts WHERE " . get_private_posts_cap_sql( 'post' ) . ' GROUP BY post_author' ) as $row ) {
-			$this->post_counts[ $row->post_author ] = $row->count;
-		}
-
-		return $this->post_counts;
 	}
 }

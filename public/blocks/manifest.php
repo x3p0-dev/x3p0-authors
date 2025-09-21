@@ -25,7 +25,7 @@ return array(
 			),
 			'hideEmpty' => array(
 				'type' => 'boolean',
-				'default' => false
+				'default' => true
 			),
 			'number' => array(
 				'type' => 'integer',

@@ -18,7 +18,7 @@
 		},
 		"hideEmpty": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"number": {
 			"type": "integer",
