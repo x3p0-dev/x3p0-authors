@@ -1,7 +1,7 @@
-=== X3P0 - Comments Title ===
+=== Authors List Block ===
 Contributors:      greenshady
 Tags:              block
-Tested up to:      6.0
+Tested up to:      6.8
 Stable tag:        1.0.0
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 

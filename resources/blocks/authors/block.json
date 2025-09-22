@@ -7,6 +7,9 @@
 	"category": "widgets",
 	"keywords": ["authors", "list", "users"],
 	"description": "Displays a list of post authors.",
+	"textdomain": "x3p0-authors",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php",
 	"attributes": {
 		"showFeed": {
 			"type": "boolean",
@@ -14,9 +17,9 @@
 		},
 		"showPostCount": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
-		"hideEmpty": {
+		"hasPublishedPosts": {
 			"type": "boolean",
 			"default": true
 		},
@@ -34,7 +37,7 @@
 		}
 	},
 	"supports": {
-		"anchor": false,
+		"anchor": true,
 		"align": true,
 		"html": false,
 		"__experimentalBorder": {
@@ -43,8 +46,10 @@
 			"width": true,
 			"style": true,
 			"__experimentalDefaultControls": {
+				"radius": true,
+				"color": true,
 				"width": true,
-				"color": true
+				"style": true
 			}
 		},
 		"color": {
@@ -55,12 +60,10 @@
 				"text": true
 			}
 		},
+		"shadow": true,
 		"spacing": {
 			"margin": true,
-			"padding": true,
-			"__experimentalDefaultControls": {
-				"padding": true
-			}
+			"padding": true
 		},
 		"typography": {
 			"fontSize": true,
@@ -68,18 +71,8 @@
 			"__experimentalFontStyle": true,
 			"__experimentalFontWeight": true,
 			"__experimentalFontFamily": true,
-			"__experimentalTextTransform": true,
-			"__experimentalDefaultControls": {
-				"fontSize": true,
-				"__experimentalFontFamily": true,
-				"__experimentalFontStyle": true,
-				"__experimentalFontWeight": true
-			}
+			"__experimentalTextTransform": true
 		}
 	},
-	"textdomain": "x3p0-list-authors",
-	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php",
 	"example": {}
 }

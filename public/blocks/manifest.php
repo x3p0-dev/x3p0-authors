@@ -14,6 +14,9 @@ return array(
 			'users'
 		),
 		'description' => 'Displays a list of post authors.',
+		'textdomain' => 'x3p0-authors',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php',
 		'attributes' => array(
 			'showFeed' => array(
 				'type' => 'boolean',
@@ -21,9 +24,9 @@ return array(
 			),
 			'showPostCount' => array(
 				'type' => 'boolean',
-				'default' => true
+				'default' => false
 			),
-			'hideEmpty' => array(
+			'hasPublishedPosts' => array(
 				'type' => 'boolean',
 				'default' => true
 			),
@@ -41,7 +44,7 @@ return array(
 			)
 		),
 		'supports' => array(
-			'anchor' => false,
+			'anchor' => true,
 			'align' => true,
 			'html' => false,
 			'__experimentalBorder' => array(
@@ -50,8 +53,10 @@ return array(
 				'width' => true,
 				'style' => true,
 				'__experimentalDefaultControls' => array(
+					'radius' => true,
+					'color' => true,
 					'width' => true,
-					'color' => true
+					'style' => true
 				)
 			),
 			'color' => array(
@@ -62,12 +67,10 @@ return array(
 					'text' => true
 				)
 			),
+			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,
-				'padding' => true,
-				'__experimentalDefaultControls' => array(
-					'padding' => true
-				)
+				'padding' => true
 			),
 			'typography' => array(
 				'fontSize' => true,
@@ -75,19 +78,9 @@ return array(
 				'__experimentalFontStyle' => true,
 				'__experimentalFontWeight' => true,
 				'__experimentalFontFamily' => true,
-				'__experimentalTextTransform' => true,
-				'__experimentalDefaultControls' => array(
-					'fontSize' => true,
-					'__experimentalFontFamily' => true,
-					'__experimentalFontStyle' => true,
-					'__experimentalFontWeight' => true
-				)
+				'__experimentalTextTransform' => true
 			)
 		),
-		'textdomain' => 'x3p0-list-authors',
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
 		'example' => array(
 			
 		)
