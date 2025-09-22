@@ -24,19 +24,6 @@ import { __ }        from '@wordpress/i18n';
 import QuerySettingsPanel from './panel-query-settings';
 import DisplaySettingsPanel from './panel-display-settings';
 
-const ORDERBY_OPTIONS = [
-	{ value: "name",            label: __('Name',            'x3p0-authors') },
-	{ value: "slug",            label: __('Slug',            'x3p0-authors') },
-	{ value: "email",           label: __('Email',           'x3p0-authors') },
-	{ value: "id",              label: __('ID',              'x3p0-authors') },
-	{ value: "registered_date", label: __('Registered Date', 'x3p0-authors') }
-];
-
-const ORDER_OPTIONS = [
-	{ value: "asc",  label: __('Ascending',  'x3p0-authors') },
-	{ value: "desc", label: __('Descending', 'x3p0-authors') }
-];
-
 /**
  * Exports the block edit function.
  */
