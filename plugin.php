@@ -13,9 +13,14 @@
  * Text Domain:       x3p0-authors
  */
 
+declare(strict_types=1);
+
 namespace X3P0\Authors;
 
-// Load classes and files.
+# Prevent direct access.
+defined('ABSPATH') || exit;
+
+# Load classes and files.
 require_once 'src/Block/Register.php';
 require_once 'src/Block/Authors.php';
 
