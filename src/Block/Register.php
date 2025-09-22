@@ -15,26 +15,26 @@ namespace X3P0\Authors\Block;
  */
 class Register
 {
-        /**
-         * Sets up object state.
-         */
-        public function __construct(protected string $path)
+	/**
+	 * Sets up object state.
+	 */
+	public function __construct(protected string $path)
 	{}
 
-        /**
-         * Boots the component, running its actions/filters.
-         */
-        public function boot(): void
-        {
-                add_action('init', [$this, 'register']);
+	/**
+	 * Boots the component, running its actions/filters.
+	 */
+	public function boot(): void
+	{
+		add_action('init', [$this, 'register']);
 		add_action('rest_api_init', [$this, 'registerRestFields']);
-        }
+	}
 
 	/**
 	 * Registers the block with WordPress.
 	 */
-        public function register(): void
-        {
+	public function register(): void
+	{
 		wp_register_block_types_from_metadata_collection(
 			$this->path,
 			"{$this->path}/manifest.php"
@@ -44,7 +44,7 @@ class Register
 			generate_block_asset_handle('x3p0/authors', 'editorScript'),
 			'x3p0-authors'
 		);
-        }
+	}
 
 	/**
 	 * Registers custom REST API fields needed for the block data.
@@ -57,7 +57,7 @@ class Register
 			},
 			'schema' => [
 				'description' => __('Number of published posts by user', 'x3p0-authors'),
-				'type'        => 'integer',
+				'type'	=> 'integer',
 			]
 		]);
 	}
