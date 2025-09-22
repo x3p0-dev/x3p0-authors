@@ -1,6 +1,8 @@
 # Authors List Block
 
-X3P0: Authors is a block that outputs a list of post authors for a WordPress site.
+![Author list shown in the WordPress content canvas.](/.wporg/banner-1544x500.png)
+
+A WordPress block that outputs a list of post authors.
 
 ## Copyright and License
 
