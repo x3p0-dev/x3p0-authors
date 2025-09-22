@@ -18,6 +18,11 @@ use WP_User_Query;
 class Authors
 {
 	/**
+	 * Stores the feed icon.
+	 */
+	private const FEED_ICON = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-120q-33 0-56.5-23.5T120-200q0-33 23.5-56.5T200-280q33 0 56.5 23.5T280-200q0 33-23.5 56.5T200-120Zm480 0q0-117-44-218.5T516-516q-76-76-177.5-120T120-680v-120q142 0 265 53t216 146q93 93 146 216t53 265H680Zm-240 0q0-67-25-124.5T346-346q-44-44-101.5-69T120-440v-120q92 0 171.5 34.5T431-431q60 60 94.5 139.5T560-120H440Z"/></svg>';
+
+	/**
 	 * Sets up object state.
 	 */
 	public function __construct(protected array $attributes)
@@ -58,19 +63,26 @@ class Authors
 				esc_html($user->display_name)
 			);
 
-			if ($this->attributes['showFeed']) {
-				$author .= sprintf(
-					' <span class="wp-block-x3p0-authors__feed">(<a href="%s">%s</a>)</span>',
-					esc_url(get_author_feed_link($user->ID)),
-					esc_html__('Feed', 'x3p0-list-authors')
-				);
-			}
+			if ($this->attributes['showFeed'] || $this->attributes['showPostCount']) {
 
-			if ($this->attributes['showPostCount']) {
-				$author .= sprintf(
-					' <span class="wp-block-x3p0-authors__count">(%s)</span>',
-					esc_html(count_user_posts($user->ID, 'post', true))
-				);
+				$author .= '<span class="wp-block-x3p0-authors__meta">';
+
+				if ($this->attributes['showFeed']) {
+					$author .= sprintf(
+						' <span class="wp-block-x3p0-authors__feed"><a href="%s">%s</a></span>',
+						esc_url(get_author_feed_link($user->ID)),
+						self::FEED_ICON
+					);
+				}
+
+				if ($this->attributes['showPostCount']) {
+					$author .= sprintf(
+						' <span class="wp-block-x3p0-authors__count">(%s)</span>',
+						esc_html(count_user_posts($user->ID, 'post', true))
+					);
+				}
+
+				$author .= '</span>';
 			}
 
 			$html .= sprintf(

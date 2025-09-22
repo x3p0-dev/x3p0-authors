@@ -7,6 +7,9 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
+// Import styles.
+import './scss/style.scss';
+
 // Import dependencies.
 import { registerBlockType } from '@wordpress/blocks';
 import metadata              from './block.json';
