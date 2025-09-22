@@ -47,24 +47,28 @@
 			"width": true,
 			"style": true,
 			"__experimentalDefaultControls": {
-				"radius": true,
-				"color": true,
-				"width": true,
-				"style": true
+				"radius": false,
+				"color": false,
+				"width": false,
+				"style": false
 			}
 		},
 		"color": {
 			"gradients": true,
 			"link": true,
 			"__experimentalDefaultControls": {
-				"background": true,
+				"link": true,
 				"text": true
 			}
 		},
 		"shadow": true,
 		"spacing": {
 			"margin": true,
-			"padding": true
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
 		},
 		"typography": {
 			"fontSize": true,

@@ -54,24 +54,28 @@ return array(
 				'width' => true,
 				'style' => true,
 				'__experimentalDefaultControls' => array(
-					'radius' => true,
-					'color' => true,
-					'width' => true,
-					'style' => true
+					'radius' => false,
+					'color' => false,
+					'width' => false,
+					'style' => false
 				)
 			),
 			'color' => array(
 				'gradients' => true,
 				'link' => true,
 				'__experimentalDefaultControls' => array(
-					'background' => true,
+					'link' => true,
 					'text' => true
 				)
 			),
 			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,
-				'padding' => true
+				'padding' => true,
+				'__experimentalDefaultControls' => array(
+					'margin' => false,
+					'padding' => false
+				)
 			),
 			'typography' => array(
 				'fontSize' => true,
