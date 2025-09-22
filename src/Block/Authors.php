@@ -69,7 +69,7 @@ class Authors
 
 				if ($this->attributes['showFeed']) {
 					$author .= sprintf(
-						' <span class="wp-block-x3p0-authors__feed"><a href="%s">%s</a></span>',
+						' <a href="%s" class="wp-block-x3p0-authors__feed">%s</a>',
 						esc_url(get_author_feed_link($user->ID)),
 						self::FEED_ICON
 					);

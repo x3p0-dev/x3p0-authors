@@ -69,13 +69,8 @@ export default function Edit({attributes, setAttributes}) {
 		hasPublishedPosts,
 	]);
 
+	// Define the block props.
 	const blockProps = useBlockProps();
-
-	const feedLink = (
-		<a href="#author-feed-pseudo-link" onClick={ (e) => e.preventDefault() }>
-			{ feedIcon }
-		</a>
-	);
 
 	const userListItems = users && users.map((user) => {
 		const authorLink = (
@@ -91,7 +86,13 @@ export default function Edit({attributes, setAttributes}) {
 		const authorMeta = (showFeed || showPostCount) && (
 			<span className="wp-block-x3p0-authors__meta">
 				{showFeed && (
-					<span className="wp-block-x3p0-authors__feed">{feedLink}</span>
+					<a
+						href="#author-feed-pseudo-link"
+						className="wp-block-x3p0-authors__feed"
+						onClick={(e) => e.preventDefault()}
+					>
+						{feedIcon}
+					</a>
 				)}
 				{showPostCount && (
 					<span className="wp-block-x3p0-authors__count">({user.x3p0_authors_post_count})</span>
