@@ -125,16 +125,14 @@ export default function Edit({attributes, setAttributes}) {
 					setAttributes={setAttributes}
 				/>
 			</InspectorControls>
-			{isResolving && (
-				<Placeholder icon={pin} label={__('Authors', 'x3p0-authors')}>
-					<Spinner/>
-				</Placeholder>
-			)}
-			{! isResolving && (
-				<ul {...blockProps}>
-					{userListItems}
-				</ul>
-			)}
+			<ul {...blockProps}>
+				{isResolving && (
+					<Placeholder icon={pin} label={__('Authors', 'x3p0-authors')}>
+						<Spinner/>
+					</Placeholder>
+				)}
+				{!isResolving && userListItems}
+			</ul>
 		</>
 	);
 }
