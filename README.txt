@@ -16,7 +16,7 @@ A customizable authors list block that lets you showcase post authors, their fee
 
 X3P0: Authors is a block that lets you display a simple list of post authors for your site. This is especially useful if you're coming over from using a classic WordPress theme and need a block that's similar to the old `wp_list_authors()` template tag.
 
-Aside from the full array of normal block design tooks, the block lets you choose from several options:
+Aside from the full array of normal block design tools, the block lets you choose from several options:
 
 - **Number:** Decide the number of authors to list.
 - **Order By:** Choose from a variety of fields to order the list by.
