@@ -7,8 +7,8 @@ Requires at least: 6.8
 Tested up to: 6.8
 Requires PHP: 8.0
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPL-3.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 A customizable authors list block that lets you showcase post authors, their feed links, and post counts.
 

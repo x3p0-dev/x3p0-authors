@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       X3P0: Authors
  * Plugin URI:        https://github.com/x3p0-dev/x3p0-authors
@@ -8,7 +9,7 @@
  * Requires PHP:      8.0
  * Author:            Justin Tadlock
  * Author URI:        https://justintadlock.com
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       x3p0-authors
  */
 
