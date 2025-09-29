@@ -25,6 +25,8 @@ Aside from the full array of normal block design tools, the block lets you choos
 - **Show Feed Link:** Whether to show an icon linked to the author's RSS feed.
 - **Show Post Count:** Whether to display the author's published post count.
 
+You can find the full source code for this plugin via its [GitHub repository](https://github.com/x3p0-dev/x3p0-authors).
+
 == Screenshots ==
 
 1. Editing the Authors block.
