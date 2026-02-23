@@ -14,9 +14,17 @@ declare(strict_types=1);
 # Prevent direct access.
 defined('ABSPATH') || exit;
 
-use X3P0\Authors\Block\Authors;
+use X3P0\Authors\Block\Type\Authors;
 
 /**
- * @global array $attributes
+ * @global array    $attributes Block attributes.
+ * @global string   $content    The block content.
+ * @global WP_Block $block      Block instance.
  */
-echo (new Authors($attributes))->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+echo (new Authors())->render(
+	attributes: $attributes,
+	content:    $content,
+	block:      $block
+);
+// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped

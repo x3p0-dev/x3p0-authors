@@ -22,8 +22,9 @@ namespace X3P0\Authors;
 defined('ABSPATH') || exit;
 
 # Load classes and files.
+require_once 'src/Block/Block.php';
 require_once 'src/Block/Register.php';
-require_once 'src/Block/Authors.php';
+require_once 'src/Block/Type/Authors.php';
 
 # Bootstrap the plugin.
 add_action(
