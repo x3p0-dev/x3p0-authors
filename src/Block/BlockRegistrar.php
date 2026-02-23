@@ -16,12 +16,17 @@ namespace X3P0\Authors\Block;
 /**
  * Registers the `x3p0/authors` block type with WordPress.
  */
-class Register
+class BlockRegistrar
 {
 	/**
-	 * Sets up object state.
+	 * Filename of the blocks manifest.
 	 */
-	public function __construct(protected string $path)
+	private const MANIFEST_FILENAME = 'manifest.php';
+
+	/**
+	 * Sets the path where the built blocks are stored.
+	 */
+	public function __construct(protected readonly string $path)
 	{}
 
 	/**
@@ -40,7 +45,7 @@ class Register
 	{
 		wp_register_block_types_from_metadata_collection(
 			$this->path,
-			"{$this->path}/manifest.php"
+			"{$this->path}/" . self::MANIFEST_FILENAME
 		);
 
 		wp_set_script_translations(
