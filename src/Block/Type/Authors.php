@@ -20,7 +20,7 @@ use X3P0\Authors\Block\Block;
 /**
  * Used for handling the front-end rendering of the `x3p0/authors` block.
  */
-class Authors implements Block
+final class Authors implements Block
 {
 	/**
 	 * Stores the feed icon.

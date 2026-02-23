@@ -16,7 +16,7 @@ namespace X3P0\Authors\Block;
 /**
  * Registers the `x3p0/authors` block type with WordPress.
  */
-class BlockRegistrar
+final class BlockRegistrar
 {
 	/**
 	 * Filename of the blocks manifest.
