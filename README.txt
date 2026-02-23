@@ -1,4 +1,4 @@
-=== Authors List Block ===
+=== X3P0: Authors ===
 
 Contributors: greenshady
 Donate link: http://a.co/02ggsr2
