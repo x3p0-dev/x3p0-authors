@@ -4,7 +4,7 @@
  * Plugin Name:       X3P0: Authors
  * Plugin URI:        https://github.com/x3p0-dev/x3p0-authors
  * Description:       Adds a block for listing post authors.
- * Version:           1.0.0
+ * Version:           2.0.0
  * Requires at least: 6.8
  * Requires PHP:      8.1
  * Author:            Justin Tadlock
