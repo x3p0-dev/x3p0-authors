@@ -34,14 +34,14 @@ class BlockRegistrar
 	 */
 	public function boot(): void
 	{
-		add_action('init', [$this, 'register']);
-		add_action('rest_api_init', [$this, 'registerRestFields']);
+		add_action('init', $this->register(...));
+		add_action('rest_api_init', $this->registerRestFields(...));
 	}
 
 	/**
 	 * Registers the block with WordPress.
 	 */
-	public function register(): void
+	private function register(): void
 	{
 		wp_register_block_types_from_metadata_collection(
 			$this->path,
@@ -57,12 +57,10 @@ class BlockRegistrar
 	/**
 	 * Registers custom REST API fields needed for the block data.
 	 */
-	public function registerRestFields(): void
+	private function registerRestFields(): void
 	{
 		register_rest_field('user', 'x3p0_authors_post_count', [
-			'get_callback' => function($user) {
-				return count_user_posts($user['id'], 'post', true);
-			},
+			'get_callback' => fn($user) => count_user_posts($user['id'], 'post', true),
 			'schema' => [
 				'description' => __('Number of published posts by user', 'x3p0-authors'),
 				'type'	=> 'integer',
